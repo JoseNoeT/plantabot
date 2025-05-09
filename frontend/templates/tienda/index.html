@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- 🎞️ Hero Slider -->
+<section class="hero-slider">
+  <div class="slide active"><img src="{% static 'img/Principal.jpg' %}" alt="Promo 1"></div>
+  <div class="slide"><img src="{% static 'img/Principal1.jpg' %}" alt="Promo 2"></div>
+  <div class="slide"><img src="{% static 'img/Principal2.jpg' %}" alt="Promo 3"></div>
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+</section>
+
+<!-- Categorías -->
+<section class="categorias scroll-reveal">
+  <h2>Categorías</h2>
+  <div class="categorias-grid">
+    <button class="filtro-btn" data-categoria="interior">🌿 Interior</button>
+    <button class="filtro-btn" data-categoria="exterior">☀️ Exterior</button>
+    <button class="filtro-btn" data-categoria="suculentas">🌵 Suculentas</button>
+  </div>
+</section>
+
+<!-- Productos -->
+<!-- Productos -->
+<section class="productos">
+  <h2>Productos</h2>
+  <div class="productos-grid">
+    {% for producto in productos %}
+      <div class="producto scroll-reveal" data-categoria="{{ producto.categoria.nombre|lower }}">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+        {% else %}
+          <img src="{% static 'img/planta3.jpg' %}" alt="Imagen por defecto">
+        {% endif %}
+        <h3>{{ producto.nombre }}</h3>
+        <p>{{ producto.descripcion }}</p>
+        <p><strong>${{ producto.precio }}</strong></p>
+
+        <!-- Botón para agregar al carrito -->
+        <a href="{% url 'carrito:agregar' producto.id %}" class="btn-agregar">🛒 Agregar al carrito</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+<!-- Productos -->
+<section class="productos">
+  <h2>Productos</h2>
+  <div class="productos-grid">
+    {% for producto in productos %}
+      <div class="producto scroll-reveal" data-categoria="{{ producto.categoria.nombre|lower }}">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+        {% else %}
+          <img src="{% static 'img/planta3.jpg' %}" alt="Imagen por defecto">
+        {% endif %}
+        <h3>{{ producto.nombre }}</h3>
+        <p>{{ producto.descripcion }}</p>
+        <p><strong>${{ producto.precio }}</strong></p>
+
+        <!-- Botón para agregar al carrito -->
+        <a href="{% url 'carrito:agregar' producto.id %}" class="btn-agregar">🛒 Agregar al carrito</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- Newsletter -->
+<section class="newsletter scroll-reveal">
+  <h2>Suscríbete</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+    <button type="submit">Suscribirse</button>
+  </form>
+</section>
+
+<!-- Testimonios -->
+<section class="testimonios scroll-reveal">
+  <h2>Testimonios</h2>
+  <div class="testimonios-grid">
+    <div class="testimonio">“Increíble variedad y calidad.” – Laura</div>
+    <div class="testimonio">“Mi planta llegó hermosa y saludable.” – Carlos</div>
+    <div class="testimonio">“El chatbot me ayudó a elegir.” – Sofía</div>
+  </div>
+</section>
+
+<!-- Popup -->
+<div class="popup-promocion" id="popup">
+  🌱 ¡10% de descuento en tu primera compra! <button onclick="document.getElementById('popup').style.display='none'">x</button>
+</div>
+
+<!-- Parallax -->
+<section class="parallax">
+  <div class="contenido-parallax">
+    <h2>Vive la experiencia verde con PlantaBot</h2>
+  </div>
+</section>
+
+<!-- Chatbot flotante -->
+<a href="/chatbot/" class="chatbot-btn">🤖</a>
+
+<!-- JS -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  ScrollReveal().reveal('.scroll-reveal', { delay: 200, duration: 600, reset: false });
+
+  let slideIndex = 0;
+  const showSlides = () => {
+    let slides = document.getElementsByClassName("slide");
+    for (let s of slides) s.style.display = "none";
+    slideIndex++;
+    if (slideIndex > slides.length) slideIndex = 1;
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 4000);
+  };
+  showSlides();
+
+  function plusSlides(n) {
+    slideIndex += n - 1;
+    showSlides();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".filtro-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const cat = btn.dataset.categoria;
+        document.querySelectorAll(".producto").forEach(p => {
+          p.style.display = p.dataset.categoria.includes(cat) ? "block" : "none";
+        });
+      });
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}PlantaBot{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="main-header">
+    <h1>🌿 PlantaBot</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/admin/">Admin</a></li>
+        <li><a href="/chatbot/">ChatBot</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 PlantaBot. Todos los derechos reservados.</p>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+  <script src="https://unpkg.com/scrollreveal"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

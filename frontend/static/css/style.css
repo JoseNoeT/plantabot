@@ -1,0 +1,222 @@
+
+/* 🌿 Paleta natural */
+:root {
+  --verde-oscuro: #2e7d32;
+  --verde: #66bb6a;
+  --crema: #f1f8e9;
+  --blanco: #ffffff;
+  --gris: #e0e0e0;
+  --marron-suave: #a1887f;
+}
+
+/* General */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--crema);
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animación fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación pulse */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Animación slide-in */
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Header */
+.main-header {
+  background: var(--verde-oscuro);
+  color: var(--blanco);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 1s ease;
+}
+.main-header a {
+  color: var(--blanco);
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+/* Slider */
+.hero-slider {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+.hero-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 2s ease;
+}
+.prev, .next {
+  position: absolute;
+  top: 45%;
+  font-size: 2rem;
+  color: var(--blanco);
+  background: rgba(0,0,0,0.3);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Categorías */
+.categorias {
+  text-align: center;
+  padding: 2rem;
+  background: var(--blanco);
+  animation: slideInLeft 0.8s ease;
+}
+.categorias-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.filtro-btn {
+  background: var(--verde);
+  border: none;
+  color: var(--blanco);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.filtro-btn:hover {
+  background: var(--verde-oscuro);
+}
+
+/* Productos */
+.productos {
+  padding: 2rem;
+}
+.productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.producto {
+  background: var(--blanco);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 250px;
+  padding: 1rem;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+.producto img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.producto:hover img {
+  transform: scale(1.05);
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--marron-suave);
+  color: var(--blanco);
+  padding: 2rem;
+  text-align: center;
+  animation: slideInRight 0.8s ease;
+}
+.newsletter input {
+  padding: 0.7rem;
+  width: 250px;
+  margin-right: 0.5rem;
+}
+.newsletter button {
+  padding: 0.7rem 1.2rem;
+  background: var(--verde-oscuro);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.newsletter button:hover {
+  background: #1b5e20;
+}
+
+/* Testimonios */
+.testimonios {
+  background: var(--gris);
+  padding: 2rem;
+  text-align: center;
+}
+.testimonios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.testimonio {
+  background: var(--blanco);
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 300px;
+  animation: pulse 3s infinite;
+}
+
+/* Popup */
+.popup-promocion {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff59d;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
+}
+
+/* Parallax */
+.parallax {
+  background: url('../img/Principal1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenido-parallax h2 {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Chatbot flotante */
+.chatbot-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--verde);
+  color: var(--blanco);
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+}
